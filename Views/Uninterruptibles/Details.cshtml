@@ -1,0 +1,61 @@
+﻿@model bs.Models.Uninterruptible
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Uninterruptible</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Agency)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Agency.AgencyName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsModel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsModel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsPower)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsPower)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsManageable)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsManageable)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsModules)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsModules)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpsBatteries)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpsBatteries)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.UpsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

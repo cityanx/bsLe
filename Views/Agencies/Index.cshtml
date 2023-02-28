@@ -1,0 +1,65 @@
+﻿@model IEnumerable<bs.Models.Agency>
+
+@{
+    ViewData["Title"] = "Agencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-4">Agencias</h3>
+
+    <p>
+        <button type="button" class="btn btn-info"><span class="p-1 m-1 text-light" data-feather="plus-circle"></span><a class="text-decoration-none text-light" asp-action="Create">Ingresar nueva agencia</a></button>
+    </p>
+
+    <div class="table-responsive">
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+                    <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgencyId)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.AgencyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgencyType)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+
+               <a class="text-black p-3 opacity-50" asp-action="Edit" asp-route-id="@item.AgencyId"><span data-feather="edit"></span></a>
+
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyId)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyName)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.TownName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyType)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
+    </div>
+</div>

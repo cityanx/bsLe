@@ -1,0 +1,49 @@
+﻿@model bs.Models.Location
+
+@{
+    ViewData["Title"] = "Editar Lugar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-4">Editar lugar</h3>
+    <hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LocationId" />
+            <div class="form-group">
+                    <label asp-for="DepartamentName" class="control-label m-1"></label>
+                <input asp-for="DepartamentName" class="form-control" />
+                <span asp-validation-for="DepartamentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label asp-for="TownName" class="control-label m-1"></label>
+                <input asp-for="TownName" class="form-control" />
+                <span asp-validation-for="TownName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label asp-for="Locations" class="control-label m-1"></label>
+                    <input asp-for="Locations" class="form-control" aria-describedby="locationsHelp" />
+                    <div id="locationsHelp" class="form-text">
+                        Pueblo, ciudad o barrio donde esté ubicada la agencia, y que funcione como identificador de la misma.
+                    </div>
+                <span asp-validation-for="Locations" class="text-danger"></span>
+            </div>
+           <br>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <input type="submit" value="Guardar" class="btn btn-success" /> |
+    <button type="button" class="btn btn-danger"><a class="text-decoration-none text-light" asp-action="Delete" asp-route-id="@Model?.LocationId">Eliminar</a></button> |
+    <button type="button" class="btn btn-dark "><a class="text-decoration-none text-light" asp-action="Index">Cancelar</a></button> 
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

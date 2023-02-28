@@ -1,0 +1,51 @@
+﻿@model IEnumerable<bs.Models.BatteryChange>
+
+@{
+    ViewData["Title"] = "Main";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-4">Main</h3>
+
+    
+
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Agency.AgencyName)</th>
+            <th>@Html.DisplayNameFor(model => model.BatteryChangeDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsName)</th>
+            <th>@Html.DisplayNameFor(model => model.BatteryChangeComments)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          <td>
+                    @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+         </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.BatteryChangeDate)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BatteryChangeComments)
+                </td>
+            <td>
+                
+                <a asp-action="Details" asp-route-id="@item.BatteryChangeId">Details</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

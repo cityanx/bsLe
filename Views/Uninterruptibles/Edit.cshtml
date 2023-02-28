@@ -1,0 +1,65 @@
+﻿@model bs.Models.Uninterruptible
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Uninterruptible</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UpsId" />
+            <div class="form-group">
+                <label asp-for="AgencyId" class="control-label"></label>
+                <select asp-for="AgencyId" class="form-control" asp-items="ViewBag.AgencyId"></select>
+                <span asp-validation-for="AgencyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsName" class="control-label"></label>
+                <input asp-for="UpsName" class="form-control" />
+                <span asp-validation-for="UpsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsModel" class="control-label"></label>
+                <input asp-for="UpsModel" class="form-control" />
+                <span asp-validation-for="UpsModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsPower" class="control-label"></label>
+                <input asp-for="UpsPower" class="form-control" />
+                <span asp-validation-for="UpsPower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsManageable" class="control-label"></label>
+                <input asp-for="UpsManageable" class="form-control" />
+                <span asp-validation-for="UpsManageable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsModules" class="control-label"></label>
+                <input asp-for="UpsModules" class="form-control" />
+                <span asp-validation-for="UpsModules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsBatteries" class="control-label"></label>
+                <input asp-for="UpsBatteries" class="form-control" />
+                <span asp-validation-for="UpsBatteries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

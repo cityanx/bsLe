@@ -1,0 +1,42 @@
+﻿@model bs.Models.Location
+
+@{
+    ViewData["Title"] = "Eliminar lugar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-4">Eliminar lugar</h3>
+    <h6 class="mt-4 text-danger">¿Está seguro que quiere eliminar este registro?</h6>
+    <hr />
+<div>
+    
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartamentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DepartamentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TownName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TownName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Locations)
+    </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Locations)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="LocationId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+    </form>
+</div>
+</div>

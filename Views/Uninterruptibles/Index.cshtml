@@ -1,0 +1,80 @@
+﻿@model IEnumerable<bs.Models.Uninterruptible>
+
+@{
+    ViewData["Title"] = "UPS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-4">UPS</h3>
+
+<p>
+    <button type="button" class="btn btn-info"><span class="p-1 m-1 text-light" data-feather="plus-circle"></span><a class="text-decoration-none text-light" asp-action="Create">Ingresar nuevo UPS</a></button>
+</p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+    <thead>
+        <tr>
+                    <th></th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.UpsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpsModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpsPower)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpsManageable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpsModules)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpsBatteries)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Agency)
+             </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             <td>
+
+                 <a class="text-black p-3 opacity-50" asp-action="Edit" asp-route-id="@item.UpsId"><span data-feather="edit"></span></a>
+
+             </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsPower)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsManageable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsModules)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsBatteries)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

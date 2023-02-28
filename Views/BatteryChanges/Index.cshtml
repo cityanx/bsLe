@@ -1,0 +1,65 @@
+﻿@model IEnumerable<bs.Models.BatteryChange>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Agency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uninterruptible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatteryChangeDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatteryChangeComments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModulesInst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatteriesInst)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatteryChangeDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatteryChangeComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModulesInst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatteriesInst)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BatteryChangeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BatteryChangeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BatteryChangeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+@font-face {
+    font-family: LeagueGothic;
+    src: url('~/fonts/LeagueGothic-Condensed.woff2'), url('~/fonts/LeagueGothic-CondensedItalic.woff2'), url('~/fonts/LeagueGothic-Italic.woff2'), url('~/fonts/LeagueGothic-Regular.woff2');
+}
+
+@font-face {
+    font-family: LeagueSpartan;
+    src: url('~/fonts/LeagueSpartan-Black.woff2'), url('~/fonts/LeagueSpartan-Bold.woff2'), url('~/fonts/LeagueSpartan-ExtraBold.woff2'), url('~/fonts/LeagueSpartan-ExtraLight.woff2'), url(~/fonts/LeagueSpartan-Light.woff2), url('~/fonts/LeagueSpartan-Medium.woff2'), url('~/fonts/LeagueSpartan-Regular.woff2'), url('~/fonts/LeagueSpartan-SemiBold.woff2');
+}
+
+.LeagueGothic {
+    font-family: 'LeagueGothic', sans-serif;
+}
+
+.LeagueSpartan {
+    font-family: 'LeagueSpartan', sans-serif;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}

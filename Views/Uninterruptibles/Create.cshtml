@@ -1,0 +1,68 @@
+﻿@model bs.Models.Uninterruptible
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Uninterruptible</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="UpsName" class="control-label m-1"></label>
+                <input asp-for="UpsName" class="form-control" />
+                <span asp-validation-for="UpsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsModel" class="control-label m-1"></label>
+                <input asp-for="UpsModel" class="form-control" />
+                <span asp-validation-for="UpsModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsPower" class="control-label m-1"></label>
+                <input asp-for="UpsPower" class="form-control" />
+                <span asp-validation-for="UpsPower" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <div class="form-check m-3">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        UPS Administrable
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsModules" class="control-label m-1"></label>
+                <input asp-for="UpsModules" class="form-control" />
+                <span asp-validation-for="UpsModules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpsBatteries" class="control-label m-1"></label>
+                <input asp-for="UpsBatteries" class="form-control" />
+                <span asp-validation-for="UpsBatteries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgencyId" class="control-label m-1"></label>
+                <select asp-for="AgencyId" class="form-select" asp-items="ViewBag.AgencyId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

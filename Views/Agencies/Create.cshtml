@@ -1,0 +1,48 @@
+﻿@model bs.Models.Agency
+
+@{
+    ViewData["Title"] = "Añadir Agencia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Agency</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LocationId" class="control-label"></label>
+                <select asp-for="LocationId" class="form-select" asp-items="ViewBag.LocationId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgencyId" class="control-label"></label>
+                <input asp-for="AgencyId" class="form-control" inputmode="numeric" />
+                <span asp-validation-for="AgencyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgencyName" class="control-label"></label>
+                <input asp-for="AgencyName" class="form-control" />
+                <span asp-validation-for="AgencyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgencyType" class="control-label"></label>
+                <input asp-for="AgencyType" class="form-control" />
+                <span asp-validation-for="AgencyType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
