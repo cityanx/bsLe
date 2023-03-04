@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bs.Data.Migrations
 {
-    public partial class Una : Migration
+    public partial class Uno : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,9 @@ namespace bs.Data.Migrations
                 {
                     LocationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartamentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TownName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DepartamentName = table.Column<string>(type: "varchar(30)", nullable: false),
+                    TownName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Locations = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +30,8 @@ namespace bs.Data.Migrations
                 {
                     AgencyId = table.Column<int>(type: "int", nullable: false),
                     LocationId = table.Column<int>(type: "int", nullable: false),
-                    AgencyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AgencyType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AgencyName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AgencyType = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,10 +51,10 @@ namespace bs.Data.Migrations
                     UpsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AgencyId = table.Column<int>(type: "int", nullable: false),
-                    UpsName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpsModel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpsName = table.Column<string>(type: "varchar(30)", nullable: false),
+                    UpsModel = table.Column<string>(type: "varchar(50)", nullable: false),
                     UpsPower = table.Column<float>(type: "real", nullable: false),
-                    UpsManageable = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpsManageable = table.Column<bool>(type: "bit", nullable: false),
                     UpsModules = table.Column<int>(type: "int", nullable: false),
                     UpsBatteries = table.Column<int>(type: "int", nullable: false)
                 },
@@ -77,9 +78,10 @@ namespace bs.Data.Migrations
                     AgencyId = table.Column<int>(type: "int", nullable: false),
                     UpsId = table.Column<int>(type: "int", nullable: false),
                     BatteryChangeDate = table.Column<DateTime>(type: "date", nullable: false),
-                    BatteryChangeComments = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    BatteryChangeComments = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
                     ModulesInst = table.Column<int>(type: "int", nullable: false),
-                    BatteriesInst = table.Column<int>(type: "int", nullable: false)
+                    BatteriesInst = table.Column<int>(type: "int", nullable: false),
+                    BatteryChangeNext = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,13 +91,13 @@ namespace bs.Data.Migrations
                         column: x => x.AgencyId,
                         principalTable: "Agencies",
                         principalColumn: "AgencyId",
-                        onDelete: ReferentialAction.Cascade);
+                        onUpdate: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BatteryChanges_Uninterruptibles_UpsId",
                         column: x => x.UpsId,
                         principalTable: "Uninterruptibles",
                         principalColumn: "UpsId",
-                        onUpdate: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -132,6 +134,7 @@ namespace bs.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Locations");
+            
         }
     }
 }

@@ -1,56 +1,86 @@
 ﻿@model bs.Models.BatteryChange
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cambio de baterías";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="container">
 
-<h4>BatteryChange</h4>
-<hr />
+    <h3 class="mt-4 mb-4 pb-3 fw-bold">Añadir cambio de baterías</h3>
+    <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form asp-action="Create" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+                <div class="form-group col-md-4">
                 <label asp-for="AgencyId" class="control-label"></label>
-                <select asp-for="AgencyId" class ="form-control" asp-items="ViewBag.AgencyId"></select>
+                <select asp-for="AgencyId" class ="form-select" asp-items="ViewBag.AgencyId"></select>
+                    
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label asp-for="UpsId" class="control-label"></label>
-                <select asp-for="UpsId" class ="form-control" asp-items="ViewBag.UpsId"></select>
+                <select asp-for="UpsId" class ="form-select" asp-items="ViewBag.UpsId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-5">
                 <label asp-for="BatteryChangeDate" class="control-label"></label>
                 <input asp-for="BatteryChangeDate" class="form-control" />
                 <span asp-validation-for="BatteryChangeDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BatteryChangeComments" class="control-label"></label>
-                <input asp-for="BatteryChangeComments" class="form-control" />
+                <textarea asp-for="BatteryChangeComments" class="form-control" rows="3"></textarea>
                 <span asp-validation-for="BatteryChangeComments" class="text-danger"></span>
+                
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label asp-for="ModulesInst" class="control-label"></label>
                 <input asp-for="ModulesInst" class="form-control" />
                 <span asp-validation-for="ModulesInst" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label asp-for="BatteriesInst" class="control-label"></label>
                 <input asp-for="BatteriesInst" class="form-control" />
                 <span asp-validation-for="BatteriesInst" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                <div class="form-group col-md-5">
+                   <fieldset> Años para el próximo cambio
+                    <select id="NextChange" name="NextChange" class="form-select">
+
+                        <option selected="selected" value="0">4 años</option>
+
+                        <option value="1">3 años</option>
+
+                        <option value="2">2 años</option>
+
+                        <option value="3">1 año</option>
+
+                        
+
+                    </select>
+                    </fieldset>
+                    
+                </div>
+                @{
+                    
+                }
+                <div class="form-group mb-2 col-md-5">
+                    <label asp-for="BatteryChangeNext" class="control-label"></label>
+                    <input asp-for="BatteryChangeNext" readonly class="form-control-plaintext fw-bold text-danger" />
+                    <span asp-validation-for="BatteryChangeNext" class="text-danger"></span>
+                </div>
+                <div class="form-group m-1">
+                    <input type="submit" value="Añadir" class="btn btn-success m-1" />
+                    <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+                </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+   
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+</div>

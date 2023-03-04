@@ -7,19 +7,20 @@
 
 <div class="container">
 
-    <h3 class="mt-4">Main</h3>
-
+    <h3 class="mt-4 mb-4 pb-3 fw-bold">Cambios necesarios para el año <br><span class="text-danger">@DateTime.Now.Year</span></h3>
+    
     
 
     <div class="table-responsive">
 
         <table class="table table-striped">
-    <thead>
+            <thead class="small">
         <tr>
             <th>@Html.DisplayNameFor(model => model.Agency.AgencyName)</th>
-            <th>@Html.DisplayNameFor(model => model.BatteryChangeDate)</th>
+            <th>Último cambio de baterías</th>
             <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsName)</th>
-            <th>@Html.DisplayNameFor(model => model.BatteryChangeComments)</th>
+                    <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsModel)</th>
+            <th>@Html.DisplayNameFor(model => model.BatteryChangeNext)</th>
             <th></th>
         </tr>
     </thead>
@@ -35,14 +36,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BatteryChangeComments)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
+                        </td>
+                <td class="fw-bolder text-danger">
+                    @Html.DisplayFor(modelItem => item.BatteryChangeNext)
                 </td>
             <td>
-                
-                <a asp-action="Details" asp-route-id="@item.BatteryChangeId">Details</a> 
-                
-            </td>
+
+                            <a asp-action="Create" class="text-decoration-none text-success" asp-route-id="@item.UpsId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
+
+                        </td>
         </tr>
 }
     </tbody>

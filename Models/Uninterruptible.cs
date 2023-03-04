@@ -36,8 +36,9 @@ namespace bs.Models
         [Display(Name = "KVA")]
         public float UpsPower { get; set; }
 
+        
         [Required(ErrorMessage = "El campo es obligatorio.")]
-        [Display(Name = "Administrable")]
+        [Display(Name = "UPS Administrable")]
         public bool UpsManageable { get; set; }
 
 
@@ -53,14 +54,13 @@ namespace bs.Models
         [Range(0, 300, ErrorMessage = "El valor debe ser de excede el límite.")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "No es un número válido")]
 
+
+        
         [DataType(DataType.Text)]
         public int UpsBatteries { get; set; }
 
-        [Range(0, 300, ErrorMessage = "El valor debe ser de excede el límite.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "No es un número válido")]
-
-        [DataType(DataType.Text)]
-        public int UpsLimit { get; set; }
+        
+       
 
 
         public IEnumerable<BatteryChange>? BatteryChanges { get; set; }

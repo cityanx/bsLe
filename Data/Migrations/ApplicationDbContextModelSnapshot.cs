@@ -68,6 +68,9 @@ namespace bs.Data.Migrations
                     b.Property<DateTime>("BatteryChangeDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("BatteryChangeNext")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ModulesInst")
                         .HasColumnType("int");
 
@@ -120,9 +123,6 @@ namespace bs.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("UpsBatteries")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UpsLimit")
                         .HasColumnType("int");
 
                     b.Property<bool>("UpsManageable")

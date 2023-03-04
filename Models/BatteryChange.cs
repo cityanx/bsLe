@@ -41,10 +41,19 @@ namespace bs.Models
         public string? BatteryChangeComments { get; set; }
 
         [Display(Name = "Módulos instalados")]
+        [DataType(DataType.Text)]
         public int ModulesInst { get; set; }
 
         [Display(Name = "Baterías instaladas")]
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "El campo es obligatorio.")]
         public int BatteriesInst { get; set; }
+
+
+        [Display(Name = "Próximo cambio de baterías")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "El campo es obligatorio.")]
+        public DateTime BatteryChangeNext { get; set; }
     }
 }

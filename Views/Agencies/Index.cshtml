@@ -7,7 +7,7 @@
 
 <div class="container">
 
-    <h3 class="mt-4">Agencias</h3>
+    <h3 class="mt-4 mb-4 pb-3 fw-bold">Agencias</h3>
 
     <p>
         <button type="button" class="btn btn-info"><span class="p-1 m-1 text-light" data-feather="plus-circle"></span><a class="text-decoration-none text-light" asp-action="Create">Ingresar nueva agencia</a></button>
@@ -15,10 +15,10 @@
 
     <div class="table-responsive">
 
-    <table class="table table-striped">
-    <thead>
+        <table class="table table-striped">
+            <thead class="small">
         <tr>
-                    <th></th>
+                    <th class="col col-1"></th>
             <th>
                 @Html.DisplayNameFor(model => model.AgencyId)
             </th>
@@ -40,7 +40,7 @@
         <tr>
            <td>
 
-               <a class="text-black p-3 opacity-50" asp-action="Edit" asp-route-id="@item.AgencyId"><span data-feather="edit"></span></a>
+                            <a class="text-black p-3 opacity-50" asp-action="Edit" asp-route-id="@item.AgencyId"><span data-feather="settings"></span></a>
 
            </td>
             <td>

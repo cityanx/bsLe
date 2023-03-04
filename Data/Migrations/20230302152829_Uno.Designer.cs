@@ -12,14 +12,14 @@ using bs.Data;
 namespace bs.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230206202800_Una")]
-    partial class Una
+    [Migration("20230302152829_Uno")]
+    partial class Uno
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -64,10 +64,13 @@ namespace bs.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BatteryChangeComments")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("BatteryChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("BatteryChangeNext")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ModulesInst")
@@ -97,6 +100,10 @@ namespace bs.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Locations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TownName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -120,8 +127,8 @@ namespace bs.Data.Migrations
                     b.Property<int>("UpsBatteries")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpsManageable")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("UpsManageable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UpsModel")
                         .IsRequired()

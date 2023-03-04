@@ -1,23 +1,30 @@
 ﻿@model IEnumerable<bs.Models.BatteryChange>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cambios de baterías";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+    <h3 class="mt-4 mb-4 pb-3 fw-bold">Lista de cambios de baterías</h3>
+
+    
+
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+            <thead class="small">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Agency)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Uninterruptible)
+                @Html.DisplayNameFor(model => model.Uninterruptible.UpsName)
             </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Uninterruptible.UpsModel)
+                    </th>
             <th>
                 @Html.DisplayNameFor(model => model.BatteryChangeDate)
             </th>
@@ -40,8 +47,11 @@
                 @Html.DisplayFor(modelItem => item.Agency.AgencyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
+                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
             </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
+                        </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BatteryChangeDate)
             </td>
@@ -54,12 +64,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BatteriesInst)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BatteryChangeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BatteryChangeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BatteryChangeId">Delete</a>
-            </td>
+                        <td>
+
+                            <a class="text-black p-3 opacity-50" asp-action="Delete" asp-route-id="@item.BatteryChangeId"><span data-feather="trash-2"></span></a>
+
+                        </td>
         </tr>
 }
     </tbody>
 </table>
+</div>
+</div>

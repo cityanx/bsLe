@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using bs.Data;
 using bs.Models;
 using System.Media;
+using System.Drawing;
+using Microsoft.Data.SqlClient;
 
 namespace bs.Controllers
 {
@@ -31,11 +33,13 @@ namespace bs.Controllers
 
 
             var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).ThenInclude(b => b.Uninterruptibles).ToList().GroupBy(a => a.UpsId).ToList()
-                 .SelectMany(g => g.OrderByDescending(a => a.BatteryChangeDate)).ToList();
-                
-            
-           
+                 .SelectMany(g => g.OrderByDescending(a => a.BatteryChangeDate).Where(x => x.BatteryChangeNext.Year == DateTime.Now.Year)).ToList();
+
+
+
             return View(applicationDbContext.ToList());
+
+            
         }
         // GET: BatteryChanges/Details/5
         public async Task<IActionResult> Details(int? id)
