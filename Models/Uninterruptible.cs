@@ -42,8 +42,8 @@ namespace bs.Models
         public bool UpsManageable { get; set; }
 
 
-        [Range(1, 100, ErrorMessage = "El valor debe ser de excede el límite.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "No es un número válido")]
+        [Range(0, 100, ErrorMessage = "El valor debe ser de excede el límite.")]
+        [RegularExpression("([0-9][0-9]*)", ErrorMessage = "No es un número válido")]
         
         [DataType(DataType.Text)]
         [Display(Name = "Módulos que acepta")]
@@ -52,7 +52,7 @@ namespace bs.Models
         [Display(Name = "Baterías que acepta")]
 
         [Range(0, 300, ErrorMessage = "El valor debe ser de excede el límite.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "No es un número válido")]
+        [RegularExpression("([0-9][0-9]*)", ErrorMessage = "No es un número válido")]
 
 
         

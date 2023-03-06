@@ -43,11 +43,7 @@
                 </div>
             </form>-->
             <!-- Navbar-->
-            <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
-                <li class="nav-item dropdown">
-                    <partial name="_LoginPartial" />
-                </li>
-            </ul>
+            
         </nav>
 
 
@@ -64,35 +60,35 @@
                         <div class="sb-sidenav-menu-heading">Core</div>
 
                         <a class="nav-link" asp-controller="BatteryChanges" asp-action="Main">
-                            <div class="sb-nav-link-icon text-warning"><span data-feather="home"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="home"></span></div>
                             Inicio
                         </a>
 
                         <a class="nav-link" asp-controller="BatteryChanges" asp-action="Index">
-                            <div class="sb-nav-link-icon text-warning"><span data-feather="list"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="list"></span></div>
                             Lista de cambios de bateria
                         </a>
                         <a class="nav-link" asp-controller="BatteryChanges" asp-action="Create">
-                            <div class="sb-nav-link-icon text-warning"><span data-feather="plus-square"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="plus-square"></span></div>
                             Agregar cambio de baterías
                         </a>
                         <div class="sb-sidenav-menu-heading">Configuración</div>
 
                         <a class="nav-link" asp-controller="Locations" asp-action="Index">
-                            <div class="sb-nav-link-icon text-warning"><span data-feather="map-pin"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="map-pin"></span></div>
                             Localidades
                             
                         </a>
                       
                         <a class="nav-link" asp-controller="Agencies" asp-action="Index">
-                            <div class="sb-nav-link-icon text-warning"><span data-feather="dollar-sign"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="dollar-sign"></span></div>
                             Agencias
                             
                         </a>
                        
                         
                         <a class="nav-link" asp-controller="Uninterruptibles" asp-action="Index">
-                            <div class="sb-nav-link-icon text-warning "><span data-feather="power"></span></div>
+                            <div class="sb-nav-link-icon text-light "><span data-feather="power"></span></div>
                             UPS
                         </a>
                        
@@ -116,8 +112,8 @@
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
                 
-                        <div class="text-muted">&copy; 2023 Designed by <a class="text-decoration-none" href="mailto:andres12enamorado@gmail.com">Cristian Enamorado</a></div>
-                        <div>Infraestructura y Taller - BOSA</div>
+                        <div class="text-muted">&copy; @DateTime.Now.Year Designed by <a class="text-decoration-none" href="https://www.linkedin.com/in/cristian-andres-enamorado-sifontes-67ba99203" target="_blank">Cristian Enamorado</a></div>
+                        <div><!--Espacio para texto al centro del footer--></div>
                         <div>
                              <a class="text-muted text-decoration-none">@DateTime.Now.ToLongDateString()</a>
                         </div>

@@ -5,6 +5,10 @@ namespace bs.Models
 {
     public class Agency
     {
+        public Agency()
+        {
+            Uninterruptible = new HashSet<Uninterruptible>();
+        }
         [Key]
         [Range(1, 500, ErrorMessage = "El valor excede el límite.")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "No es un número válido")]
@@ -38,7 +42,7 @@ namespace bs.Models
 
 
 
-        public IEnumerable<Uninterruptible>? Uninterruptibles { get; set; }
+        public ICollection<Uninterruptible> Uninterruptible { get; set; }
 
 
     }

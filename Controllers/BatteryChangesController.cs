@@ -11,11 +11,14 @@ using System.Media;
 using System.Drawing;
 using Microsoft.Data.SqlClient;
 
+
+
 namespace bs.Controllers
 {
     public class BatteryChangesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private List<SelectListItem> _agenciesItems;
 
         public BatteryChangesController(ApplicationDbContext context)
         {
@@ -25,21 +28,21 @@ namespace bs.Controllers
         // GET: BatteryChanges
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).Include(b => b.Uninterruptible);
+            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).Include(b => b.Uninterruptible).Include(b => b.Agency.Location);
             return View(await applicationDbContext.ToListAsync());
         }
         public async Task<IActionResult> Main()
         {
 
 
-            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).ThenInclude(b => b.Uninterruptibles).ToList().GroupBy(a => a.UpsId).ToList()
+            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).ThenInclude(b => b.Uninterruptible).Include(b => b.Agency.Location).ToList().GroupBy(a => a.UpsId).ToList()
                  .SelectMany(g => g.OrderByDescending(a => a.BatteryChangeDate).Where(x => x.BatteryChangeNext.Year == DateTime.Now.Year)).ToList();
 
 
 
             return View(applicationDbContext.ToList());
 
-            
+
         }
         // GET: BatteryChanges/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -62,11 +65,35 @@ namespace bs.Controllers
         }
 
         // GET: BatteryChanges/Create
-        public IActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName");
-            ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");
+
+            /* ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName")
+             * ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");*/
+
+            var agencies = _context.Agencies.ToList();
+            _agenciesItems = new List<SelectListItem>();
+            foreach (var item in agencies)
+            {
+                _agenciesItems.Add(new SelectListItem
+                {
+                    Text = item.AgencyName,
+                    Value = item.AgencyId.ToString()
+
+                });
+            }
+            
+            ViewBag.agenciesItems = _agenciesItems;
+
             return View();
+        }
+
+        public JsonResult GetUPS(int AgencyId)
+        {
+
+            var uninterruptibles = _context.Uninterruptibles.Where(x => x.AgencyId == AgencyId).ToList();
+            return Json(uninterruptibles);
+
         }
 
         // POST: BatteryChanges/Create
@@ -176,14 +203,14 @@ namespace bs.Controllers
             {
                 _context.BatteryChanges.Remove(batteryChange);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BatteryChangeExists(int id)
         {
-          return _context.BatteryChanges.Any(e => e.BatteryChangeId == id);
+            return _context.BatteryChanges.Any(e => e.BatteryChangeId == id);
         }
     }
 }

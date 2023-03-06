@@ -40,6 +40,7 @@ namespace bs.Models
 
         public string? BatteryChangeComments { get; set; }
 
+        [Required(ErrorMessage = "El campo es obligatorio.")]
         [Display(Name = "Módulos instalados")]
         [DataType(DataType.Text)]
         public int ModulesInst { get; set; }

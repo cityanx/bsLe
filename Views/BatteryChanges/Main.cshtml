@@ -4,52 +4,86 @@
     ViewData["Title"] = "Main";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!--
+<div id="carouselExampleIndicators" class="carousel slide p-5" data-bs-ride="carousel">
 
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active bg-black" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class="bg-black"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="bg-black"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-50" alt="primera">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-100" alt="segunda">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-100" alt="tercera">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>-->
 <div class="container">
 
     <h3 class="mt-4 mb-4 pb-3 fw-bold">Cambios necesarios para el año <br><span class="text-danger">@DateTime.Now.Year</span></h3>
-    
-    
+
+
 
     <div class="table-responsive">
 
         <table class="table table-striped">
             <thead class="small">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Agency.AgencyName)</th>
-            <th>Último cambio de baterías</th>
-            <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsName)</th>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Agency.AgencyName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Agency.Location.Locations)</th>
+                    <th>Último cambio de baterías</th>
+
+                    <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsName)</th>
                     <th>@Html.DisplayNameFor(model => model.Uninterruptible.UpsModel)</th>
-            <th>@Html.DisplayNameFor(model => model.BatteryChangeNext)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-          <td>
-                    @Html.DisplayFor(modelItem => item.Agency.AgencyName)
-         </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.BatteryChangeDate)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
-                </td>
+                    <th>@Html.DisplayNameFor(model => model.BatteryChangeNext)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Agency.Location.Locations)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BatteryChangeDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
                         </td>
-                <td class="fw-bolder text-danger">
-                    @Html.DisplayFor(modelItem => item.BatteryChangeNext)
-                </td>
-            <td>
+                        <td class="fw-bolder text-danger">
+                            @Html.DisplayFor(modelItem => item.BatteryChangeNext)
+                        </td>
+                        <td>
 
                             <a asp-action="Create" class="text-decoration-none text-success" asp-route-id="@item.UpsId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
 
                         </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

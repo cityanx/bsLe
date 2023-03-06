@@ -5,82 +5,124 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<html>
+<head>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="~/lib/jquery/dist/jquery.js"><\/script>')</script>
+</head>
+<body>
+    <div class="container">
 
-    <h3 class="mt-4 mb-4 pb-3 fw-bold">Añadir cambio de baterías</h3>
-    <hr />
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create" class="row g-3">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group col-md-4">
-                <label asp-for="AgencyId" class="control-label"></label>
-                <select asp-for="AgencyId" class ="form-select" asp-items="ViewBag.AgencyId"></select>
+        <h3 class="mt-4 mb-4 pb-3 fw-bold">Añadir cambio de baterías</h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Create" class="row g-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group col-md-5">
+                        <label asp-for="BatteryChangeDate" class="control-label"></label>
+                        <input asp-for="BatteryChangeDate" class="form-control" />
+                        <span asp-validation-for="BatteryChangeDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label asp-for="AgencyId" class="control-label"></label>
+                        @Html.DropDownList("ddlAgencies", ViewBag.agenciesItems as List<SelectListItem>,
+                        "Seleccionar", new { @class = "form-select" })
+
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label asp-for="UpsId" class="control-label"></label>
+                        @Html.DropDownList("ddlUps", new List<SelectListItem>(),
+                        "Seleccionar", new { @class = "form-select" })
+                    </div>
                     
-            </div>
-            <div class="form-group col-md-3">
-                <label asp-for="UpsId" class="control-label"></label>
-                <select asp-for="UpsId" class ="form-select" asp-items="ViewBag.UpsId"></select>
-            </div>
-            <div class="form-group col-md-5">
-                <label asp-for="BatteryChangeDate" class="control-label"></label>
-                <input asp-for="BatteryChangeDate" class="form-control" />
-                <span asp-validation-for="BatteryChangeDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BatteryChangeComments" class="control-label"></label>
-                <textarea asp-for="BatteryChangeComments" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="BatteryChangeComments" class="text-danger"></span>
-                
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="ModulesInst" class="control-label"></label>
-                <input asp-for="ModulesInst" class="form-control" />
-                <span asp-validation-for="ModulesInst" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-3">
-                <label asp-for="BatteriesInst" class="control-label"></label>
-                <input asp-for="BatteriesInst" class="form-control" />
-                <span asp-validation-for="BatteriesInst" class="text-danger"></span>
-            </div>
-                <div class="form-group col-md-5">
-                   <fieldset> Años para el próximo cambio
-                    <select id="NextChange" name="NextChange" class="form-select">
 
-                        <option selected="selected" value="0">4 años</option>
+                    <div class="form-group">
+                        <label asp-for="BatteryChangeComments" class="control-label"></label>
+                        <textarea asp-for="BatteryChangeComments" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="BatteryChangeComments" class="text-danger"></span>
 
-                        <option value="1">3 años</option>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="ModulesInst" class="control-label"></label>
+                        <input asp-for="ModulesInst" class="form-control" />
+                        <span asp-validation-for="ModulesInst" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="BatteriesInst" class="control-label"></label>
+                        <input asp-for="BatteriesInst" class="form-control" />
+                        <span asp-validation-for="BatteriesInst" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <fieldset>
+                            Años para el próximo cambio
+                            <select id="NextChange" name="NextChange" class="form-select">
 
-                        <option value="2">2 años</option>
+                                <option selected="selected" value="0">4 años</option>
 
-                        <option value="3">1 año</option>
+                                <option value="1">3 años</option>
 
-                        
+                                <option value="2">2 años</option>
 
-                    </select>
-                    </fieldset>
-                    
-                </div>
-                @{
-                    
-                }
-                <div class="form-group mb-2 col-md-5">
-                    <label asp-for="BatteryChangeNext" class="control-label"></label>
-                    <input asp-for="BatteryChangeNext" readonly class="form-control-plaintext fw-bold text-danger" />
-                    <span asp-validation-for="BatteryChangeNext" class="text-danger"></span>
-                </div>
-                <div class="form-group m-1">
-                    <input type="submit" value="Añadir" class="btn btn-success m-1" />
-                    <a asp-action="Index" class="btn btn-dark">Cancelar</a>
-                </div>
-        </form>
+                                <option value="3">1 año</option>
+                            </select>
+                        </fieldset>
+
+                    </div>
+                    @{
+
+                    }
+                    <div class="form-group mb-2 col-md-5">
+                        <label asp-for="BatteryChangeNext" class="control-label"></label>
+                        <input asp-for="BatteryChangeNext" readonly class="form-control-plaintext fw-bold text-danger" />
+                        <span asp-validation-for="BatteryChangeNext" class="text-danger"></span>
+                    </div>
+                    <div class="form-group m-1">
+                        <input type="submit" value="Añadir" class="btn btn-success m-1" />
+                        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        @section Scripts {
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="~/lib/jquery/dist/jquery.js"><\/script>')</script>
+            <script>
+                $(document).ready(function () {
+
+                    $("#ddlAgencies").change(function () {
+                        $.get("/BatteryChanges/GetUPS", { AgencyId: $("#ddlAgencies").val() }, function (data) {
+                            // VACIAMOS EL DropDownList
+                            $("#ddlUps").empty();
+                            
+                            // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                            $("#ddlUps").append("<option value>Seleccionar UPS de Ag. " + $("#ddlAgencies option:selected").text() + "</option>")
+                            // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+
+                            $.each(data, function (index, row) {
+
+
+                                
+                                $("#ddlUps").append("<option value='" + row.upsId + "'>" + row.upsModel + "</option>");
+
+                                
+
+                            });
+                        });
+                    });
+                });
+            </script>
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+
+        }
+
     </div>
-</div>
-
-   
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-</div>
+</body>
+</html>

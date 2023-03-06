@@ -1,6 +1,7 @@
 ﻿using bs.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace bs.Data
 {
@@ -9,6 +10,7 @@ namespace bs.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            
         }
 
         public DbSet<Location>? Locations { get; set; }

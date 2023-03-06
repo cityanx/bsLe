@@ -9,69 +9,64 @@
 
     <h3 class="mt-4 mb-4 pb-3 fw-bold">Lista de cambios de baterías</h3>
 
-    
+
 
     <div class="table-responsive">
 
         <table class="table table-striped">
             <thead class="small">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Agency)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uninterruptible.UpsName)
-            </th>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Agency.AgencyName)
+                    </th>
+                    <th>@Html.DisplayNameFor(model => model.Agency.Location.Locations)</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Uninterruptible.UpsName)
+                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Uninterruptible.UpsModel)
                     </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BatteryChangeDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BatteryChangeComments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModulesInst)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BatteriesInst)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Agency.AgencyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
-            </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BatteryChangeDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BatteryChangeComments)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Agency.Location.Locations)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
                         </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BatteryChangeDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BatteryChangeComments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModulesInst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BatteriesInst)
-            </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BatteryChangeDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BatteryChangeComments)
+                        </td>
+
                         <td>
 
                             <a class="text-black p-3 opacity-50" asp-action="Delete" asp-route-id="@item.BatteryChangeId"><span data-feather="trash-2"></span></a>
 
                         </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
