@@ -10,8 +10,8 @@ using bs.Models;
 using System.Media;
 using System.Drawing;
 using Microsoft.Data.SqlClient;
-
-
+using NuGet.Protocol.Plugins;
+using NuGet.Protocol;
 
 namespace bs.Controllers
 {
@@ -35,8 +35,23 @@ namespace bs.Controllers
         {
 
 
-            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).ThenInclude(b => b.Uninterruptible).Include(b => b.Agency.Location).ToList().GroupBy(a => a.UpsId).ToList()
-                 .SelectMany(g => g.OrderByDescending(a => a.BatteryChangeDate).Where(x => x.BatteryChangeNext.Year == DateTime.Now.Year)).ToList();
+            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency)
+                .ThenInclude(b => b.Uninterruptible).Include(b => b.Agency.Location).ToList()
+                .GroupBy(a => a.UpsId).ToList()
+                .Select(g => g.OrderByDescending(a => a.BatteryChangeNext).FirstOrDefault())
+                .Where(x => x.BatteryChangeNext.Year == DateTime.Today.Year)
+                ;
+
+            
+
+
+
+            foreach (var item in applicationDbContext)
+            {
+               Console.WriteLine("Fecha = " + item.BatteryChangeNext + " UPS =" + item.Uninterruptible.UpsModel);
+
+            }
+
 
 
 
@@ -102,6 +117,51 @@ namespace bs.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst,BatteryChangeNext")] BatteryChange batteryChange)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(batteryChange);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName", batteryChange.AgencyId);
+            ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel", batteryChange.UpsId);
+            return View(batteryChange);
+        }
+
+
+        // GET: BatteryChanges/CreateID
+        public async Task<IActionResult> CreateID()
+        {
+            ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName");
+            ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");
+
+            var agencies = _context.Agencies.ToList();
+            _agenciesItems = new List<SelectListItem>();
+            foreach (var item in agencies)
+            {
+                _agenciesItems.Add(new SelectListItem
+                {
+                    Text = item.AgencyName,
+                    Value = item.AgencyId.ToString()
+
+                });
+            }
+
+            ViewBag.agenciesItems = _agenciesItems;
+
+            return View();
+        }
+
+
+
+
+        // POST: BatteryChanges/CreateID
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateID([Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst,BatteryChangeNext")] BatteryChange batteryChange)
         {
             if (ModelState.IsValid)
             {
