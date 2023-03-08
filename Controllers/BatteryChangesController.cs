@@ -39,20 +39,7 @@ namespace bs.Controllers
                 .ThenInclude(b => b.Uninterruptible).Include(b => b.Agency.Location).ToList()
                 .GroupBy(a => a.UpsId).ToList()
                 .Select(g => g.OrderByDescending(a => a.BatteryChangeNext).FirstOrDefault())
-                .Where(x => x.BatteryChangeNext.Year == DateTime.Today.Year)
-                ;
-
-            
-
-
-
-            foreach (var item in applicationDbContext)
-            {
-               Console.WriteLine("Fecha = " + item.BatteryChangeNext + " UPS =" + item.Uninterruptible.UpsModel);
-
-            }
-
-
+                .Where(x => x.BatteryChangeNext.Year == DateTime.Today.Year);
 
 
             return View(applicationDbContext.ToList());
@@ -131,26 +118,23 @@ namespace bs.Controllers
 
 
         // GET: BatteryChanges/CreateID
-        public async Task<IActionResult> CreateID()
+        public async Task<IActionResult> CreateID(int? id)
         {
-            ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName");
-            ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");
-
-            var agencies = _context.Agencies.ToList();
-            _agenciesItems = new List<SelectListItem>();
-            foreach (var item in agencies)
+            if (id == null || _context.BatteryChanges == null)
             {
-                _agenciesItems.Add(new SelectListItem
-                {
-                    Text = item.AgencyName,
-                    Value = item.AgencyId.ToString()
-
-                });
+                return NotFound();
             }
 
-            ViewBag.agenciesItems = _agenciesItems;
+            var batteryChange = await _context.BatteryChanges
+                .Include(b => b.Agency)
+                .Include(b => b.Uninterruptible)
+                .FirstOrDefaultAsync(m => m.UpsId == id);
+            if (batteryChange == null)
+            {
+                return NotFound();
+            }
 
-            return View();
+            return View(batteryChange);
         }
 
 
