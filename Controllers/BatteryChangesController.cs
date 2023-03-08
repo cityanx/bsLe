@@ -65,11 +65,10 @@ namespace bs.Controllers
         }
 
         // GET: BatteryChanges/Create
-        public ActionResult Create(int? id)
+        public IActionResult Create()
         {
-
-            /* ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName")
-             * ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");*/
+            ViewData["AgencyId"] = new SelectList(_context.Agencies, "AgencyId", "AgencyName");
+            ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel");
 
             var agencies = _context.Agencies.ToList();
             _agenciesItems = new List<SelectListItem>();
@@ -82,11 +81,12 @@ namespace bs.Controllers
 
                 });
             }
-            
+
             ViewBag.agenciesItems = _agenciesItems;
 
             return View();
         }
+
 
         public JsonResult GetUPS(int AgencyId)
         {
@@ -101,7 +101,7 @@ namespace bs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst")] BatteryChange batteryChange)
+        public async Task<IActionResult> Create([Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst,BatteryChangeNext")] BatteryChange batteryChange)
         {
             if (ModelState.IsValid)
             {
@@ -113,6 +113,7 @@ namespace bs.Controllers
             ViewData["UpsId"] = new SelectList(_context.Uninterruptibles, "UpsId", "UpsModel", batteryChange.UpsId);
             return View(batteryChange);
         }
+
 
         // GET: BatteryChanges/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -137,7 +138,7 @@ namespace bs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst")] BatteryChange batteryChange)
+        public async Task<IActionResult> Edit(int id, [Bind("BatteryChangeId,AgencyId,UpsId,BatteryChangeDate,BatteryChangeComments,ModulesInst,BatteriesInst,BatteryChangeNext")] BatteryChange batteryChange)
         {
             if (id != batteryChange.BatteryChangeId)
             {

@@ -5,40 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container">
 
-<h4>Agency</h4>
-<hr />
+    <h3 class="mt-4">Editar lugar</h3>
+    <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AgencyId" />
-            <div class="form-group">
-                <label asp-for="LocationId" class="control-label"></label>
+            <div class="form-group col-md-7">
+                    <label asp-for="LocationId" class="control-label m-1"></label>
                 <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
                 <span asp-validation-for="LocationId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AgencyName" class="control-label"></label>
+            <div class="form-group col-md-7">
+                    <label asp-for="AgencyName" class="control-label m-1"></label>
                 <input asp-for="AgencyName" class="form-control" />
                 <span asp-validation-for="AgencyName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AgencyType" class="control-label"></label>
-                <input asp-for="AgencyType" class="form-control" />
-                <span asp-validation-for="AgencyType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                <div class="form-group col-md-4">
+                    <fieldset>
+                        <label asp-for="AgencyType" class="control-labe m-1"></label>
+                        <select asp-for="AgencyType" name="AgencyType" class="form-select">
+
+                            <option selected="selected" value="Agencia">Agencia</option>
+
+                            <option value="Sucursal">Sucursal</option>
+
+                            <option value="Ventanilla">Ventanilla</option>
+
+
+                        </select>
+                    </fieldset>
+
+                    <span asp-validation-for="AgencyType" class="text-danger"></span>
+                </div>
+                <div class="form-group m-1 p-3">
+                    <input type="submit" value="Guardar" class="btn btn-success" /> |
+                    <button type="button" class="btn btn-danger"><a class="text-decoration-none text-light" asp-action="Delete" asp-route-id="@Model?.AgencyId">Eliminar</a></button> |
+                    <button type="button" class="btn btn-dark "><a class="text-decoration-none text-light" asp-action="Index">Cancelar</a></button>
+                </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

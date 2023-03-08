@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<bs.Models.BatteryChange>
 
 @{
-    ViewData["Title"] = "Main";
+    ViewData["Title"] = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!--
@@ -76,13 +76,15 @@
                         <td class="fw-bolder text-danger">
                             @Html.DisplayFor(modelItem => item.BatteryChangeNext)
                         </td>
+                        
                         <td>
 
-                            <a asp-action="Create" class="text-decoration-none text-success" asp-route-id="@item.UpsId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
+                            <a asp-action="Create" class="text-decoration-none text-success" asp-route-id="@item.BatteryChangeId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
 
                         </td>
                     </tr>
                 }
+
             </tbody>
         </table>
     </div>
