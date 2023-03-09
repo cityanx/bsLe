@@ -26,9 +26,22 @@ namespace bs.Controllers
         }
 
         // GET: BatteryChanges
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string agency, string year, string nextyear, string location)
         {
-            var applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).Include(b => b.Uninterruptible).Include(b => b.Agency.Location);
+            if (_context.BatteryChanges == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.BatteryChanges'  is null.");
+            }
+            var applicationDbContext = from m in _context.BatteryChanges
+                                       .Include(s => s.Agency)
+                                       .ThenInclude(s => s.Uninterruptible)
+                                       select m;
+
+            if (!String.IsNullOrEmpty(agency))
+            {
+                applicationDbContext = applicationDbContext.Where(s => s.Agency.AgencyName!.Contains(agency));
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
         public async Task<IActionResult> Main()

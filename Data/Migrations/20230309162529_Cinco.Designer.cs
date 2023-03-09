@@ -12,8 +12,8 @@ using bs.Data;
 namespace bs.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230308033313_Dos")]
-    partial class Dos
+    [Migration("20230309162529_Cinco")]
+    partial class Cinco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,6 +125,9 @@ namespace bs.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("UpsBatteries")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UpsIpAddress")
                         .HasColumnType("int");
 
                     b.Property<bool>("UpsManageable")

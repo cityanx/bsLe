@@ -11,70 +11,77 @@
 
     <p>
         <a type="button" class="btn btn-outline-success" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo UPS</a>
-</p>
+    </p>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="small">
-        <tr>
+                <tr>
                     <th class="col col-1"></th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.UpsName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpsModel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpsPower)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpsManageable)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpsModules)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpsBatteries)
-            </th>
-             <th>
-                @Html.DisplayNameFor(model => model.Agency)
-             </th>
-            
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-             <td>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsModel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsPower)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsManageable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsIpAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsModules)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpsBatteries)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Agency)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
 
                             <a class="text-black p-3 opacity-50" asp-action="Edit" asp-route-id="@item.UpsId"><span data-feather="settings"></span></a>
 
-             </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsModel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsPower)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsManageable)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsModules)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpsBatteries)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Agency.AgencyName)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsModel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsPower)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.UpsManageable)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsIpAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsModules)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpsBatteries)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

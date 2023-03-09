@@ -57,7 +57,7 @@ namespace bs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UpsId,AgencyId,UpsName,UpsModel,UpsPower,UpsManageable,UpsModules,UpsBatteries")] Uninterruptible uninterruptible)
+        public async Task<IActionResult> Create([Bind("UpsId,AgencyId,UpsName,UpsModel,UpsPower,UpsManageable,UpsIpAddress,UpsModules,UpsBatteries")] Uninterruptible uninterruptible)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace bs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UpsId,AgencyId,UpsName,UpsModel,UpsPower,UpsManageable,UpsModules,UpsBatteries")] Uninterruptible uninterruptible)
+        public async Task<IActionResult> Edit(int id, [Bind("UpsId,AgencyId,UpsName,UpsModel,UpsPower,UpsManageable,UpsIpAddress,UpsModules,UpsBatteries")] Uninterruptible uninterruptible)
         {
             if (id != uninterruptible.UpsId)
             {

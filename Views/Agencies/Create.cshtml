@@ -36,7 +36,7 @@
                     <input asp-for="AgencyName" class="form-control" />
                     <span asp-validation-for="AgencyName" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <fieldset>
                         <label asp-for="AgencyType" class="control-labe m-1"></label>
                         <select asp-for="AgencyType" name="AgencyType" class="form-select">
@@ -47,6 +47,9 @@
 
                             <option value="Ventanilla">Ventanilla</option>
 
+                            <option value="ATM">Cajero Automático</option>
+
+                            <option value="Otro">Otro</option>
 
                         </select>
                     </fieldset>

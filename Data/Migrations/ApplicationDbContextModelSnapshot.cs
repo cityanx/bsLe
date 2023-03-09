@@ -125,6 +125,9 @@ namespace bs.Data.Migrations
                     b.Property<int>("UpsBatteries")
                         .HasColumnType("int");
 
+                    b.Property<int>("UpsIpAddress")
+                        .HasColumnType("int");
+
                     b.Property<bool>("UpsManageable")
                         .HasColumnType("bit");
 
