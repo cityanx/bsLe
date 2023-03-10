@@ -12,6 +12,7 @@ using System.Drawing;
 using Microsoft.Data.SqlClient;
 using NuGet.Protocol.Plugins;
 using NuGet.Protocol;
+using bs.Models.ViewModels;
 
 namespace bs.Controllers
 {
@@ -25,24 +26,47 @@ namespace bs.Controllers
             _context = context;
         }
 
+
         // GET: BatteryChanges
-        public async Task<IActionResult> Index(string agency, string year, string nextyear, string location)
+        public async Task<IActionResult> Index(string searchString, string chosenFilter)
         {
-            if (_context.BatteryChanges == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.BatteryChanges'  is null.");
-            }
-            var applicationDbContext = from m in _context.BatteryChanges
-                                       .Include(s => s.Agency)
-                                       .ThenInclude(s => s.Uninterruptible)
-                                       select m;
+            var viewModel = new BCFilterViewModel();
 
-            if (!String.IsNullOrEmpty(agency))
+            IQueryable<BatteryChange> applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).Include(b => b.Uninterruptible).Include(b => b.Agency.Location);
+
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                applicationDbContext = applicationDbContext.Where(s => s.Agency.AgencyName!.Contains(agency));
+                switch (chosenFilter)
+                {
+                    case "agency":
+                        viewModel.Filter = "agency";
+                        applicationDbContext = applicationDbContext.Where(x => x.Agency.AgencyName.Contains(searchString));
+                        break;
+
+                    case "location":
+                        viewModel.Filter = "location";
+                        applicationDbContext = applicationDbContext.Where(x => x.Agency.Location.Locations.Contains(searchString));
+                        break;
+
+                    case "year":
+                        viewModel.Filter = "year";
+                        applicationDbContext = applicationDbContext.Where(x => x.BatteryChangeDate.Year.ToString().Contains(searchString));
+                        break;
+
+                    case "nextyear":
+                        viewModel.Filter = "nextyear";
+                        applicationDbContext = applicationDbContext.Where(x => x.BatteryChangeNext.Year.ToString().Contains(searchString));
+                        break;
+                }
             }
 
-            return View(await applicationDbContext.ToListAsync());
+            viewModel.BatteryChanges = applicationDbContext;
+
+            
+            viewModel.SearchString = searchString;
+
+            return View(viewModel);
         }
         public async Task<IActionResult> Main()
         {

@@ -4,13 +4,36 @@
     ViewData["Title"] = "Lugares";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container">
-
     <h3 class="mt-4 mb-4 pb-3 fw-bold">Lugares</h3>
+    
+    <div class="hstack gap-3 mb-2">
+        <div class="">
+            <a type="button" class="btn btn-outline-success col-12" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo lugar</a>
+        </div>
+        <div class="ms-auto">
+            <form asp-action="Index" asp-controller="Locations" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+                <span data-feather="filter" class="opacity-50 p-1"></span>
+                
+                <div class="col-md-12">
+                    <input type="text" name="searchString" class="form-control" placeholder="Buscar departamento..."/>
+                </div>
 
-    <p>
-        <a type="button" class="btn btn-outline-success" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo lugar</a>
-    </p>
+                <button type="submit" class="btn btn-secondary text-light p-1">
+                    <span class="p-1" data-feather="search"></span>
+                </button>
+
+
+            </form>
+        </div>
+        
+    </div>
+
+
+
+
+
 
 
     <div class="table-responsive">
@@ -58,4 +81,5 @@
 
     </div>
 </div>
+
 
