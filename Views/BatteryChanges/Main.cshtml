@@ -3,40 +3,20 @@
 @{
     ViewData["Title"] = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int validateNull = 0;
 }
-<!--
-<div id="carouselExampleIndicators" class="carousel slide p-5" data-bs-ride="carousel">
 
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active bg-black" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class="bg-black"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="bg-black"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-50" alt="primera">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-100" alt="segunda">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/Uninterruptible-Power-Supply-UPS.jpg" class="d-block w-100" alt="tercera">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-    </button>
-</div>-->
 <div class="container">
-
-    <h3 class="mt-4 mb-4 pb-3 fw-bold">Cambios necesarios para el año <br><span class="text-danger">@DateTime.Now.Year</span></h3>
-
-
+    <div class="row">
+        <h3 class="mt-4 mb-4 pb-3 fw-bold col-md-5">Cambios necesarios para el año <br><span class="text-danger">@DateTime.Today.Year</span></h3>
+        @if (DateTime.Today.Month == 1 && DateTime.Today.Day <= 7)
+        {
+            <div class="alert alert-info alert-dismissible fade show col-md-5 m-sm-auto" role="alert">
+                <strong>¡Primera semana del año!</strong> Recuerda agregar tus cambios de batería con las fechas correspondientes al día de cambio.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    </div>
 
     <div class="table-responsive">
 
@@ -54,39 +34,61 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Agency.AgencyName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Agency.Location.Locations)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BatteryChangeDate)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
-                        </td>
-                        <td class="fw-bolder text-danger">
-                            @Html.DisplayFor(modelItem => item.BatteryChangeNext)
-                        </td>
-
-                        <td>
-
-                            <a asp-action="CreateID" class="text-decoration-none text-success" asp-route-id="@item.UpsId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
-
-                        </td>
-                    </tr>
+                @{
                     
-                }
 
+                    @foreach (var item in Model)
+                    {
+
+
+                        <tr class="text-nowrap">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Agency.Location.Locations)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BatteryChangeDate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Uninterruptible.UpsModel)
+                            </td>
+                            <td class="fw-bolder text-danger">
+                                @Html.DisplayFor(modelItem => item.BatteryChangeNext)
+                            </td>
+
+                            <td>
+
+                                <a asp-action="CreateID" class="text-decoration-none text-success" asp-route-id="@item.UpsId"><span data-feather="plus-square" class="p-1"></span>Agregar cambio</a>
+
+                            </td>
+                        </tr>
+                        if (item!= null)
+                        {
+                            validateNull++; 
+                        }
+                        else
+                        {
+                            validateNull = 0;    
+                        }
+                    }
+                    }
+                 
             </tbody>
         </table>
+        @if (validateNull == 0) { 
+        
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <span data-feather="check-circle" class=" flex-shrink-0 me-2" width="24" height="24" aria-label="Info:"></span>
+                <div>
+                    <strong>¡Limpio!</strong> No hay cambios necesarios.
+                </div>
+            </div>
+        }
     </div>
 </div>
