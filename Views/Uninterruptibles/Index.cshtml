@@ -9,9 +9,33 @@
 
     <h3 class="mt-4 mb-4 pb-3 fw-bold">UPS</h3>
 
-    <p>
-        <a type="button" class="btn btn-outline-success" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo UPS</a>
-    </p>
+    <div class="hstack gap-3 mb-2">
+        <div class="">
+            <a type="button" class="btn btn-outline-success" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo UPS</a>
+        </div>
+        <div class="ms-auto">
+            <form asp-action="Index" asp-controller="Uninterruptibles" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+                <span data-feather="filter" class="opacity-50 p-1"></span>
+
+                <div class="col-md-12">
+                    <input type="text" name="searchString" class="form-control" placeholder="Buscar agencia..." />
+                </div>
+
+                <button type="submit" class="btn btn-secondary text-light p-1">
+                    <span class="p-1" data-feather="search"></span>
+
+                </button>
+                <div>
+                    <div class="vr"></div>
+                </div>
+                <a class="text-decoration-none link-dark" asp-action="Index">Regresar</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="small">

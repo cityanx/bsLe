@@ -9,7 +9,7 @@
     
     <div class="row">
         <h3 class="mt-4 mb-4 pb-3 fw-bold col-md-4">Lista de cambios de baterías</h3>
-        <div class="col-md-6">
+        <div class="col-md-7">
 
             <form asp-action="Index" asp-controller="BatteryChanges" method="get" class="row row-cols-lg-auto g-3 align-items-center m-2">
                 <span data-feather="filter" class="opacity-50 p-1"></span>
@@ -30,6 +30,10 @@
                 <button type="submit" class="btn btn-secondary text-light p-1">
                     <span class="p-1" data-feather="search"></span>
                 </button>
+                <div>
+                    <div class="vr"></div>
+                </div>
+                <a class="text-decoration-none link-dark" asp-action="Index">Regresar</a>
 
 
             </form>
@@ -103,5 +107,8 @@
                 }
             </tbody>
         </table>
+
+
+
     </div>
 </div>

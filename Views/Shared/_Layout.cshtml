@@ -3,14 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Proyecto de Práctica Profesional Supervisada, realizada en el Departamento de T.I
+    <meta name="description" content="Proyecto de Práctica Profesional Supervisada, realizada en el Departamento de Tecnologías de Información
      del Banco de Occidente, Santa Rosa de Copán."/>
     <meta name="author" content="Cristian Andres Enamorado" />
     <title>@ViewData["Title"]</title>
 
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />   
     
-
 
     <link rel="shortcut icon" href="~/images/favicon.png" type="image/png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -22,10 +21,7 @@
 
 <body class="sb-nav-fixed">
     <header>
-      
         <!-- navbar -->
-
-       
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Logo-->
             <div class="container col-md-3 mx-md-1">
@@ -35,21 +31,7 @@
             <!-- Sidebar Toggle-->
             <a class="nav-link d-block" id="sidebarToggle" href="#!"><span data-feather="menu"></span></a>
             </div>
-            <!-- Navbar Buscar
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><span class="p-1" data-feather="search"></span></button>
-                </div>
-            </form>-->
-            <!-- Navbar-->
-            
         </nav>
-
-
-
-<!---->
-       
     </header>
 
     <div id="layoutSidenav">
@@ -76,23 +58,28 @@
 
                         <a class="nav-link" asp-controller="Locations" asp-action="Index">
                             <div class="sb-nav-link-icon text-light"><span data-feather="map-pin"></span></div>
-                            Localidades
-                            
+                            Localidades         
                         </a>
                       
                         <a class="nav-link" asp-controller="Agencies" asp-action="Index">
                             <div class="sb-nav-link-icon text-light"><span data-feather="dollar-sign"></span></div>
-                            Agencias
-                            
+                            Agencias   
                         </a>
-                       
-                        
+                         
                         <a class="nav-link" asp-controller="Uninterruptibles" asp-action="Index">
-                            <div class="sb-nav-link-icon text-light "><span data-feather="power"></span></div>
+                            <div class="sb-nav-link-icon text-light"><span data-feather="power"></span></div>
                             UPS
                         </a>
-                       
+                        
+                        <footer class="fixed-bottom">
+                            <a class="nav-link col-md-2 p-1 m-1" asp-controller="Home" asp-action="Info">
+                                <span data-feather="info"></span>
+
+                            </a>
+                        </footer>
+                        
                     </div>
+                    
                 </div>
                 
             </nav>
@@ -103,9 +90,6 @@
                 <div class="container-fluid px-4">
                     @RenderBody()
                 </div>
-
-
-
 
             </main>
              <footer class="py-4 bg-light mt-auto">
@@ -124,12 +108,7 @@
        
     </div>
 
- 
 
-
-
-    
-   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/feather/dist/feather.min.js"></script>

@@ -20,9 +20,21 @@ namespace bs.Controllers
         }
 
         // GET: Uninterruptibles
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.Uninterruptibles.Include(u => u.Agency);
+            if (_context.Locations == null)
+            {
+                return Problem("El conjunto de entidades 'ApplicationDbContext.Uninterruptibles' es nulo.");
+            }
+            var applicationDbContext = from m in _context.Uninterruptibles
+                                       .Include(x => x.Agency)
+                                       select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                applicationDbContext = applicationDbContext.Where(s => s.Agency.AgencyName!.Contains(searchString));
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
 

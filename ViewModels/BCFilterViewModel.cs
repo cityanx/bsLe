@@ -1,5 +1,4 @@
 ﻿
-
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace bs.Models.ViewModels
@@ -7,7 +6,6 @@ namespace bs.Models.ViewModels
     public class BCFilterViewModel
     {
 
-        
         public IEnumerable<BatteryChange> BatteryChanges { get; set; }
         public string SearchString { get; set; }
         public string Filter { get; set; }

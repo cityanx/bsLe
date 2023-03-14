@@ -78,8 +78,12 @@
     <script>
         $(document).ready(function () {
 
-            $("#UpsIpAddress").hide();
-            
+            if ($("#UpsManageable").is(":checked")) {
+                $("#UpsIpAddress").show();
+            } else {
+                $("#UpsIpAddress").hide();
+            }
+
             $("#UpsManageable").click(function () {
                 if ($(this).is(":checked")) {
                     $("#UpsIpAddress").show(300);

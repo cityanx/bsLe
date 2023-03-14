@@ -24,7 +24,7 @@ namespace bs.Controllers
         {
             if (_context.Locations == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Locations'  is null.");
+                return Problem("El conjunto de entidades 'ApplicationDbContext.Locations' es nulo.");
             }
             var applicationDbContext = from m in _context.Locations
                                        select m;

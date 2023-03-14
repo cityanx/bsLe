@@ -9,7 +9,7 @@
     <h3 class="mt-4 mb-4 pb-3 fw-bold">Lugares</h3>
 
     <div class="hstack gap-3 mb-2">
-        <div class="">
+        <div>
             <a type="button" class="btn btn-outline-success col-12" asp-action="Create"><span class="p-1 m-1 " data-feather="plus-circle"></span>Ingresar nuevo lugar</a>
         </div>
         <div class="ms-auto">
@@ -22,10 +22,15 @@
 
                 <button type="submit" class="btn btn-secondary text-light p-1">
                     <span class="p-1" data-feather="search"></span>
+                    
                 </button>
-
+                <div>
+                    <div class="vr"></div>
+                </div>
+                <a class="text-decoration-none link-dark" asp-action="Index">Regresar</a>
 
             </form>
+            
         </div>
 
     </div>

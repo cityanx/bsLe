@@ -18,9 +18,10 @@ namespace bs.Controllers
 {
     public class BatteryChangesController : Controller
     {
+        
         private readonly ApplicationDbContext _context;
         private List<SelectListItem> _agenciesItems;
-
+        
         public BatteryChangesController(ApplicationDbContext context)
         {
             _context = context;
@@ -30,11 +31,14 @@ namespace bs.Controllers
         // GET: BatteryChanges
         public async Task<IActionResult> Index(string searchString, string chosenFilter)
         {
+           
             var viewModel = new BCFilterViewModel();
+
+            
 
             IQueryable<BatteryChange> applicationDbContext = _context.BatteryChanges.Include(b => b.Agency).Include(b => b.Uninterruptible).Include(b => b.Agency.Location);
 
-
+           
             if (!String.IsNullOrEmpty(searchString))
             {
                 switch (chosenFilter)
@@ -65,7 +69,8 @@ namespace bs.Controllers
 
             
             viewModel.SearchString = searchString;
-
+            int pageSize = 3;
+            
             return View(viewModel);
         }
         public async Task<IActionResult> Main()

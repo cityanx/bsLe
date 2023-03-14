@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using bs.Data;
 using bs.Models;
+using bs.ViewModels;
 
 namespace bs.Controllers
 {
@@ -20,10 +21,37 @@ namespace bs.Controllers
         }
 
         // GET: Agencies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string chosenFilter)
         {
-            var applicationDbContext = _context.Agencies.Include(a => a.Location);
-            return View(await applicationDbContext.ToListAsync());
+            var viewModel = new AGFilterViewModel();
+
+            IQueryable<Agency> applicationDbContext = _context.Agencies.Include(b => b.Location).Include(b => b.Uninterruptible);
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                switch (chosenFilter)
+                {
+                   
+                    case "location":
+                        viewModel.Filter = "location";
+                        applicationDbContext = applicationDbContext.Where(x => x.Location.Locations.Contains(searchString));
+                        break;
+
+                    case "type":
+                        viewModel.Filter = "type";
+                        applicationDbContext = applicationDbContext.Where(x => x.AgencyType.Contains(searchString));
+                        break;
+
+                }
+            }
+
+            viewModel.Agencies = applicationDbContext;
+
+
+            viewModel.SearchString = searchString;
+
+            return View(viewModel);
         }
 
         // GET: Agencies/Details/5
